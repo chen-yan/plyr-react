@@ -1,6 +1,6 @@
 {
   "name": "plyr-react",
-  "version": "5.3.7",
+  "version": "5.3.8",
   "description": "A simple HTML5, YouTube and Vimeo player for react using plyr",
   "keywords": [
     "react",
@@ -31,8 +31,8 @@
       "default": "./index.js"
     }
   },
-  "main": "./index.js",
-  "types": "./index.d.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist/**/*"
   ],
