@@ -19,7 +19,10 @@ System.register(['react/jsx-runtime', 'react', 'plyr', 'prop-types', 'react-apto
 
       const instantiate = (_, params) => {
         var _a, _b, _c;
-        const plyr = new PlyrJS("#" + ((_b = (_a = params == null ? void 0 : params.options) == null ? void 0 : _a.id) != null ? _b : "plyr"), (_c = params == null ? void 0 : params.options) != null ? _c : {});
+        const plyr = new PlyrJS(
+          "#" + ((_b = (_a = params == null ? void 0 : params.options) == null ? void 0 : _a.id) != null ? _b : "plyr"),
+          (_c = params == null ? void 0 : params.options) != null ? _c : {}
+        );
         if (params == null ? void 0 : params.source) plyr.source = params == null ? void 0 : params.source;
         return plyr;
       };
@@ -65,7 +68,15 @@ System.register(['react/jsx-runtime', 'react', 'plyr', 'prop-types', 'react-apto
           source,
           options
         });
-        return /* @__PURE__ */ jsx("video", { ref: raptorRef, id: (_a = options == null ? void 0 : options.id) != null ? _a : "plyr", className: "plyr-react plyr", ...rest });
+        return /* @__PURE__ */ jsx(
+          "video",
+          {
+            ref: raptorRef,
+            id: (_a = options == null ? void 0 : options.id) != null ? _a : "plyr",
+            className: "plyr-react plyr",
+            ...rest
+          }
+        );
       }));
       {
         Plyr.displayName = "Plyr";
