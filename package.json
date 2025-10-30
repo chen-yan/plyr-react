@@ -37,28 +37,15 @@
     "**"
   ],
   "scripts": {
-    "pretest": "tsc --noEmit",
-    "test": "jest",
-    "test:ci": "jest",
-    "test:coverage": "jest --coverage --forceExit --colors",
-    "test:coverage:watch": "jest --watch",
-    "test:dev": "jest --watch --no-coverage",
-    "lint": "esw --ext .tsx --ext .ts --color",
-    "lint:fix": "npm run lint --fix",
-    "eslint": "eslint --fix '*.{js,json}' '{src,tests}/**/*.{ts,tsx}'",
-    "eslint:ci": "eslint '*.{js,json}' '{src,tests}/**/*.{ts,tsx}'",
     "prebuild": "shx rm -rf dist",
     "build": "rollup -c",
     "postbuild": "npm run copy",
-    "precopy": "shx cp -r dist/src/* dist/esm && shx cp -r dist/src/* dist && shx rm -rf dist/src && shx rm -rf dist/{src,tests}",
-    "copy": "concurrently -m 8 'npm:copy:*'",
-    "copy:package-json": "shx cp package.json dist && json -I -f dist/package.json -e 'this.private=false; this.devDependencies=undefined; this.scripts=undefined; this.publishConfig=undefined'",
-    "copy:static-content": "shx cp README.md LICENSE dist",
+    "copy": "npm run copy:package && npm run copy:static",
+    "copy:package": "shx cp package.json dist && json -I -f dist/package.json -e 'this.private=false; delete this.devDependencies; delete this.scripts; delete this.publishConfig'",
+    "copy:static": "shx cp README.md LICENSE dist",
     "prepare": "npm run build",
     "prerelease": "npm run build",
-    "release": "npm publish",
-    "predeploy": "npm run prepare",
-    "deploy": "gh-pages -d"
+    "release": "git tag -a v$(node -p 'require(\"./package.json\").version') -m 'release' && git push origin --tags"
   },
   "dependencies": {
     "plyr": "^3.7.7",
