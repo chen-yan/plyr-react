@@ -42,7 +42,10 @@ const instantiate: Instantiate<
   PlyrConfigurationProps
 > = (_, params) => {
   // The node update of ref in react life cycle seems to have issue, used class selector instead
-  const plyr = new PlyrJS(".plyr-react", params?.options ?? {});
+  const plyr = new PlyrJS(
+    "#" + (params?.options?.id ?? "plyr"),
+    params?.options ?? {}
+  );
   if (params?.source) plyr.source = params?.source;
   return plyr;
 };
@@ -119,7 +122,14 @@ const Plyr = React.forwardRef<APITypes, PlyrProps>((props, ref) => {
     source,
     options,
   }) as MutableRefObject<HTMLVideoElement>;
-  return <video ref={raptorRef} className="plyr-react plyr" {...rest} />;
+  return (
+    <video
+      ref={raptorRef}
+      id={options?.id ?? "plyr"}
+      className="plyr-react plyr"
+      {...rest}
+    />
+  );
 });
 
 /* Setting the default props and prop types for the component. */

@@ -18,14 +18,13 @@ System.register(['react/jsx-runtime', 'react', 'plyr', 'prop-types', 'react-apto
       exports('usePlyr', usePlyr);
 
       const instantiate = (_, params) => {
-        const plyr = new PlyrJS(".plyr-react", params.options || {});
-        if (params.source)
-          plyr.source = params.source;
+        var _a, _b, _c;
+        const plyr = new PlyrJS("#" + ((_b = (_a = params == null ? void 0 : params.options) == null ? void 0 : _a.id) != null ? _b : "plyr"), (_c = params == null ? void 0 : params.options) != null ? _c : {});
+        if (params == null ? void 0 : params.source) plyr.source = params == null ? void 0 : params.source;
         return plyr;
       };
       const destroy = (plyr) => {
-        if (plyr)
-          plyr.destroy();
+        if (plyr) plyr.destroy();
       };
       const noop = () => {
       };
@@ -56,16 +55,17 @@ System.register(['react/jsx-runtime', 'react', 'plyr', 'prop-types', 'react-apto
             destroy,
             params
           },
-          deps || [params.options, params.source]
+          deps != null ? deps : [params.options, params.source]
         );
       }
       const Plyr = exports('default', React.forwardRef((props, ref) => {
+        var _a;
         const { source, options = null, ...rest } = props;
         const raptorRef = usePlyr(ref, {
           source,
           options
         });
-        return /* @__PURE__ */ jsx("video", { ref: raptorRef, className: "plyr-react plyr", ...rest });
+        return /* @__PURE__ */ jsx("video", { ref: raptorRef, id: (_a = options == null ? void 0 : options.id) != null ? _a : "plyr", className: "plyr-react plyr", ...rest });
       }));
       {
         Plyr.displayName = "Plyr";

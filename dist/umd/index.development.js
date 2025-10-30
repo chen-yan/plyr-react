@@ -30,36 +30,29 @@
   var useAptor__default = /*#__PURE__*/_interopDefaultLegacy(useAptor);
 
   function _extends() {
-    _extends = Object.assign ? Object.assign.bind() : function (target) {
-      for (var i = 1; i < arguments.length; i++) {
-        var source = arguments[i];
-        for (var key in source) {
-          if (Object.prototype.hasOwnProperty.call(source, key)) {
-            target[key] = source[key];
-          }
-        }
+    return _extends = Object.assign ? Object.assign.bind() : function (n) {
+      for (var e = 1; e < arguments.length; e++) {
+        var t = arguments[e];
+        for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]);
       }
-      return target;
-    };
-    return _extends.apply(this, arguments);
+      return n;
+    }, _extends.apply(null, arguments);
   }
-  function _objectWithoutPropertiesLoose(source, excluded) {
-    if (source == null) return {};
-    var target = {};
-    var sourceKeys = Object.keys(source);
-    var key, i;
-    for (i = 0; i < sourceKeys.length; i++) {
-      key = sourceKeys[i];
-      if (excluded.indexOf(key) >= 0) continue;
-      target[key] = source[key];
+  function _objectWithoutPropertiesLoose(r, e) {
+    if (null == r) return {};
+    var t = {};
+    for (var n in r) if ({}.hasOwnProperty.call(r, n)) {
+      if (-1 !== e.indexOf(n)) continue;
+      t[n] = r[n];
     }
-    return target;
+    return t;
   }
 
   var _excluded = ["source", "options"];
   var instantiate = function instantiate(_, params) {
-    var plyr = new PlyrJS__default["default"](".plyr-react", params.options || {});
-    if (params.source) plyr.source = params.source;
+    var _params$options$id, _params$options, _params$options2;
+    var plyr = new PlyrJS__default["default"]("#" + ((_params$options$id = params == null || (_params$options = params.options) == null ? void 0 : _params$options.id) != null ? _params$options$id : "plyr"), (_params$options2 = params == null ? void 0 : params.options) != null ? _params$options2 : {});
+    if (params != null && params.source) plyr.source = params == null ? void 0 : params.source;
     return plyr;
   };
   var destroy = function destroy(plyr) {
@@ -98,9 +91,10 @@
       getAPI: getAPI,
       destroy: destroy,
       params: params
-    }, deps || [params.options, params.source]);
+    }, deps != null ? deps : [params.options, params.source]);
   }
   var Plyr = React__namespace.forwardRef(function (props, ref) {
+    var _options$id;
     var source = props.source,
       _props$options = props.options,
       options = _props$options === void 0 ? null : _props$options,
@@ -111,6 +105,7 @@
     });
     return jsxRuntime.jsx("video", _extends({
       ref: raptorRef,
+      id: (_options$id = options == null ? void 0 : options.id) != null ? _options$id : "plyr",
       className: "plyr-react plyr"
     }, rest));
   });
