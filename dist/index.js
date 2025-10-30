@@ -34,28 +34,36 @@ var PropTypes__default = /*#__PURE__*/_interopDefaultLegacy(PropTypes);
 var useAptor__default = /*#__PURE__*/_interopDefaultLegacy(useAptor);
 
 function _extends() {
-  return _extends = Object.assign ? Object.assign.bind() : function (n) {
-    for (var e = 1; e < arguments.length; e++) {
-      var t = arguments[e];
-      for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]);
+  _extends = Object.assign ? Object.assign.bind() : function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
     }
-    return n;
-  }, _extends.apply(null, arguments);
+    return target;
+  };
+  return _extends.apply(this, arguments);
 }
-function _objectWithoutPropertiesLoose(r, e) {
-  if (null == r) return {};
-  var t = {};
-  for (var n in r) if ({}.hasOwnProperty.call(r, n)) {
-    if (-1 !== e.indexOf(n)) continue;
-    t[n] = r[n];
+function _objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
   }
-  return t;
+  return target;
 }
 
 var _excluded = ["source", "options"];
 var instantiate = function instantiate(_, params) {
   var _params$options$id, _params$options, _params$options2;
-  var plyr = new PlyrJS__default["default"]("#" + ((_params$options$id = params == null || (_params$options = params.options) == null ? void 0 : _params$options.id) != null ? _params$options$id : "plyr"), (_params$options2 = params == null ? void 0 : params.options) != null ? _params$options2 : {});
+  var plyr = new PlyrJS__default["default"]("#" + ((_params$options$id = params == null ? void 0 : (_params$options = params.options) == null ? void 0 : _params$options.id) != null ? _params$options$id : "plyr"), (_params$options2 = params == null ? void 0 : params.options) != null ? _params$options2 : {});
   if (params != null && params.source) plyr.source = params == null ? void 0 : params.source;
   return plyr;
 };
@@ -87,6 +95,7 @@ var getAPI = function getAPI(plyr) {
   };
 };
 function usePlyr(ref, params, deps) {
+  var _deps;
   if (deps === void 0) {
     deps = null;
   }
@@ -95,7 +104,7 @@ function usePlyr(ref, params, deps) {
     getAPI: getAPI,
     destroy: destroy,
     params: params
-  }, deps != null ? deps : [params.options, params.source]);
+  }, (_deps = deps) != null ? _deps : [params.options, params.source]);
 }
 var Plyr = React__namespace.forwardRef(function (props, ref) {
   var _options$id;

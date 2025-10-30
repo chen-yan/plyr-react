@@ -10,11 +10,13 @@ const instantiate = (_, params) => {
     "#" + ((_b = (_a = params == null ? void 0 : params.options) == null ? void 0 : _a.id) != null ? _b : "plyr"),
     (_c = params == null ? void 0 : params.options) != null ? _c : {}
   );
-  if (params == null ? void 0 : params.source) plyr.source = params == null ? void 0 : params.source;
+  if (params == null ? void 0 : params.source)
+    plyr.source = params == null ? void 0 : params.source;
   return plyr;
 };
 const destroy = (plyr) => {
-  if (plyr) plyr.destroy();
+  if (plyr)
+    plyr.destroy();
 };
 const noop = () => {
 };
