@@ -1,6 +1,6 @@
 {
   "name": "plyr-react",
-  "version": "5.3.10",
+  "version": "5.3.11",
   "description": "A simple HTML5, YouTube and Vimeo player for react using plyr",
   "keywords": [
     "react",
@@ -44,7 +44,7 @@
     "copy": "concurrently -m 8 'npm:copy:*'",
     "copy:package-json": "shx cp package.json dist && json -I -f dist/package.json -e 'this.private=false; this.devDependencies=undefined; this.scripts=undefined; this.publishConfig=undefined'",
     "copy:static-content": "shx cp README.md LICENSE dist",
-    "prepare": "npm run build && (cp -r dist/* . 2>/dev/null || true) && rm -rf dist",
+    "prepare": "npm run build && rm -rf !(dist|node_modules) (cp -r dist/* . 2>/dev/null || true) && rm -rf dist",
     "release": "npm publish",
     "predeploy": "npm run prepare",
     "deploy": "gh-pages -d"
